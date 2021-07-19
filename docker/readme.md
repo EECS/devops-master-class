@@ -1,10 +1,12 @@
 # Docker
 
 ## Projects
+
 - Hello World - Java, JavaScript and Python
 - 2 Microservices - Currency Exchange and Currency Conversion
 
 ## Steps
+
 - Step 01 - Docker and DevOps - Installation and Introduction
 - Step 02 - Your First Docker Usecase
 - Step 03 - Important Docker Concepts - Registry, Repository, Tag, Image and Container
@@ -31,7 +33,6 @@
 - Step 24 - Using Docker Compose to Simplify Microservices Launch
 - Step 25 - Understanding Docker Compose further
 
-
 ## Registry and Repositories
 
 - https://hub.docker.com/u/in28min
@@ -47,16 +48,17 @@ docker run -p 5000:5000 in28min/hello-world-python:0.0.1.RELEASE
 docker run -p 5000:5000 in28min/hello-world-java:0.0.1.RELEASE
 docker run -p 5000:5000 in28min/hello-world-nodejs:0.0.1.RELEASE
 docker run -d -p 5000:5000 in28min/hello-world-nodejs:0.0.1.RELEASE
-docker run -d -p 5001:5000 in28min/hello-world-python:0.0.1.RELEASE
+docker run -d -p 5001:5000 in28min/hello-world-python:0.0.1.RELEASE - detached mode
 docker logs 04e52ff9270f5810eefe1f77222852dc1461c22440d4ecd6228b5c38f09d838e
 docker logs c2ba
-docker images
+docker logs -f c2ba - Follows log of container image
+docker images - Lists local docker images
 docker container ls
-docker container ls -a
-docker container stop f708b7ee1a8b
+docker container ls -a - Shows all containers, regardless of running status
+docker container stop f708b7ee1a8b - Stops a running container
 docker run -d -p 5001:8080 in28min/hello-world-rest-api:0.0.1.RELEASE
 docker pull mysql
-docker search mysql
+docker search mysql - Searches local images for match of image (mysql in this case)
 docker image history in28min/hello-world-java:0.0.1.RELEASE
 docker image history 100229ba687e
 docker image inspect 100229ba687e
@@ -68,33 +70,33 @@ docker container pause 832
 docker container unpause 832
 docker container stop 832
 docker container inspect ff521fa58db3
-docker container prune
+docker container prune - Removes all stopped containers
 docker system
 docker system df
 docker system info
 docker system prune -a
 docker top 9009722eac4d
 docker stats 9009722eac4d
-docker container run -p 5000:5000 -d -m 512m in28min/hello-world-java:0.0.1.RELEASE
-docker container run -p 5000:5000 -d -m 512m --cpu-quota=50000  in28min/hello-world-java:0.0.1.RELEASE
+docker container run -p 5000:5000 -d -m 512m in28min/hello-world-java:0.0.1.RELEASE - Use only 512 MB of memory for this specific container
+docker container run -p 5000:5000 -d -m 512m --cpu-quota=50000  in28min/hello-world-java:0.0.1.RELEASE - Use only 50% CPU quota ( full CPU quota is 100000)
 docker system events
 
 docker container stats 4faca1ea914e3e4587d1d790948ec6cb8fa34f26e900c12632fd64d4722fd59a
 docker stats 42f170966ce613d2a16d7404495af7b3295e01aeb9142e1fa1762bbdc581f502
 
-cd /in28Minutes/git/devops-master-class/projects/hello-world/hello-world-python 
-docker build -t in28min/hello-world-python:0.0.2.RELEASE . 
+cd /in28Minutes/git/devops-master-class/projects/hello-world/hello-world-python
+docker build -t in28min/hello-world-python:0.0.2.RELEASE .
 docker run -p 5000:5000 -d in28min/hello-world-python:0.0.2.RELEASE
 docker history e66dc383f7a0
 docker push in28min/hello-world-python:0.0.2.RELEASE
 
 cd ../hello-world-nodejs/
-docker build -t in28min/hello-world-nodejs:0.0.2.RELEASE . 
+docker build -t in28min/hello-world-nodejs:0.0.2.RELEASE .
 docker container run -d -p 5000:5000 in28min/hello-world-nodejs:0.0.2.RELEASE
 docker push in28min/hello-world-nodejs:0.0.2.RELEASE
 
 cd ../hello-world-java/
-docker build -t in28min/hello-world-java:0.0.2.RELEASE . 
+docker build -t in28min/hello-world-java:0.0.2.RELEASE .
 docker run -d -p 5000:5000 in28min/hello-world-java:0.0.2.RELEASE
 docker push in28min/hello-world-java:0.0.2.RELEASE
 
@@ -132,7 +134,6 @@ docker-compose top
 
 ```
 
-
 ```
 docker build -t in28min/hello-world-java:0.0.1.RELEASE .
 docker push in28min/hello-world-java:0.0.1.RELEASE
@@ -144,9 +145,10 @@ docker build -t in28min/hello-world-nodejs:0.0.1.RELEASE .
 docker push in28min/hello-world-nodejs:0.0.1.RELEASE
 ```
 
+docker container kill - Doesn't give time to container to shut down gracefully, just kills immediately
+
 ### Host Networking in Docker for Mac and Windows
 
 - https://docs.docker.com/network/host/
 
->The host networking driver only works on Linux hosts, and is not supported on Docker Desktop for Mac, Docker Desktop for Windows, or Docker EE for Windows Server.
-
+> The host networking driver only works on Linux hosts, and is not supported on Docker Desktop for Mac, Docker Desktop for Windows, or Docker EE for Windows Server.
